@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+// Given a year as a number (ex: 2016), print the number of Friday-the-thirteens in that year.
+
+var year = prompt("Enter a year"); // ask user to enter a year
+
+function numFriThirteen(year){
+	var d = new Date(); // create date object
+	var counter = 0; // create counter to track number of friday the 13ths
+	for (var month = 0; month < 12; month++){ // loop to create a date object for 13th day of each month in chosen year
+		d.setFullYear(year,month,13)
+		if (d.getDay() === 5){ // check if date is a friday
+			counter++; // increment counter if date is a friday
+		}
+	}
+	return counter; // return # of friday the 13ths
+}
+console.log(numFriThirteen(year));
+
+
+// // --SUPER BONUS-- How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+
+
+// ## Leetspeak
+// Given a paragraph of text as a string, print the paragraph in leetspeak.
+// To translate a string to leetspeak, you need to make the following character replacements (treat all input characters as uppercase): 
+// A => 4
+// E => 3
+// G => 6
+// I => 1
+// O => 0
+// S => 5
+// T => 7
+// Example: Leet => l337
+
+var text = prompt("Enter some text"); // get some text from the user
+var toReplace = ["A", "E", "G", "I", "O", "S", "T"] // normal alphabet letters to be replaced
+var leetAlph = ["4", "3", "6", "1", "0", "5", "7"] // replacement letters
+
+function leet(text){
+	text = text.toUpperCase();
+	for (var i = 0; i < text.length; i++){
+		var currentChar = text.charAt(i);
+		for (var j = 0; j < toReplace.length; j++){
+			if (currentChar === toReplace[j]){
+				text = text.replace(currentChar, leetAlph[j]);
+			}
+		}
+	}
+	return text;
+}
+console.log(leet(text));
+
+
+// ## Long-long Vowels
+// Given a word as a string, print the result of extending any long vowels to the length of 5. Examples:
+// Good => Goooood
+// Cheese => Cheeeeese
+// Man => Man
+// Spoon => Spooooon
+
+// works for cases such as moose, eel, etc; need to rewrite so it would work for words with two sets of long vowels 
+var vowels = ["a", "e", "i", "o", "u", "y"];
+
+var longVowText = prompt("Enter a word with long vowels");
+
+function longVow(){
+	for (var i = 0; i < longVowText.length; i++){
+		var currentChar = longVowText.charAt(i);
+		var nextChar = longVowText.charAt(i+1);
+		for (var j = 0; j < vowels.length; j++){
+			if ((currentChar === vowels[j]) && (nextChar === vowels[j])){
+				var timesFive = vowels[j] + vowels[j] + vowels[j] + vowels[j];
+				var newlongVowText = longVowText.replace(currentChar, timesFive);
+			}
+		}
+	}
+	return newlongVowText;
+}
+console.log(longVow());
+
+
+</script>
+
+</body>
+</html>
